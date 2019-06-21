@@ -1,0 +1,14 @@
+{% extends "facefilter/layout.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <input id="yt_id" type="hidden" value="{{review.yt_id}}">
+    <a href="/commentary" class="filterest-name">
+        Back To Commentary
+    </a>
+    <div class="filterest-title filterest-result-container">
+        <div id="ytplayer"></div>
+    </div>
+
+    <script src="{% static 'facefilter/js/commentating.js' %}"></script>
+{% endblock %}

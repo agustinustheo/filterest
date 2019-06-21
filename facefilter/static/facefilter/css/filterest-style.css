@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    overflow-x: hidden;
+}
+.filterest-main{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: #e0ecec;
+}
+.filterest-name{
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 24pt;
+    color: black;
+    text-decoration: none;
+}
+.filterest-title{
+    width: 100vw;
+    min-height: 100%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.filterest-title > a#goToUpload{
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 10px;
+
+    border-radius: 10px;
+    background:#ff9100;
+}
+.filterest-title > a#goToUpload > img{
+    width: 60%;
+    height: 60%;
+}
+.filterest-title > img, .filterest-title > form#getYoutubeUrl{
+    margin: 10px;
+}
+form#getYoutubeUrl > input{
+    width: 425px;
+    height: 38px;
+
+    font-size: 16pt;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    border-radius: 10px;
+    border: 1px solid grey;
+    outline: none;
+}
+#ytplayer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#ytplayer > *{
+    display: block;
+    margin-top: 15px;
+}
+
+.filterest-reviews{
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: block;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    color: black;
+    text-decoration: none;
+}
+
+.filterest-reviews > b{
+    font-size: 20pt;
+    display: block;
+    margin:10px;
+}
+
+.filterest-reviews > span{
+    font-size: 14pt;
+}
+
+.filterest-reviews > span > span.finished{
+    color: green;
+}
+
+.filterest-reviews > span > span.processing{
+    color: orangered;
+}
+
+.filterest-reviews > span > span.error{
+    color: red;
+}
+.filterest-comment-box{
+    background: white;
+    margin: 10px;
+    margin-top: 40px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    font-size: 16pt;
+}
+.filterest-play-button{
+    background: orangered;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16pt;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+}
+#ytplayer > div.filterest-container{
+    display: grid;
+    grid-template-columns: 85px calc(100% - 85px);
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 100px;
+}
+.filterest-play-button:hover{
+    background: rgb(204, 64, 13);
+}
+.filterest-result-container{
+    margin-top: 120px;
+}

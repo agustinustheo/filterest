@@ -25,12 +25,15 @@ SECRET_KEY = 'd@2(c(@xj7hp@+e@_t6a6e%1k-io8nt)v66_h3-(^6m(w%izgj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'facefilter',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

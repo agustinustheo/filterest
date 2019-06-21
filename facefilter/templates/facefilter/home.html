@@ -1,0 +1,14 @@
+{% extends "facefilter/layout.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <a href="/commentary" class="filterest-name">
+        Go To Commentary
+    </a>
+    <div class="filterest-title">
+        <img src="{% static 'facefilter/img/filterest.png' %}">
+        <a id="goToUpload" href="/upload">
+            <img src="{% static 'facefilter/img/upload.png' %}">
+        </a>
+    </div>
+{% endblock %}

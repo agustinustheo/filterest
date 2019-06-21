@@ -1,0 +1,18 @@
+  {% extends "facefilter/layout.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <a href="/commentary" class="filterest-name">
+      Go To Commentary
+    </a>
+    <div class="filterest-title">
+        <img src="{% static 'facefilter/img/filterest.png' %}">
+        <img src="{% static 'facefilter/img/filterest mascot.png' %}">
+        <form id="getYoutubeUrl">
+          <input type="text" name="param_1" placeholder="Enter youtube url here..">
+        </form>
+    </div>
+
+
+    <script src="{% static 'facefilter/js/upload.js' %}"></script>
+{% endblock %}
