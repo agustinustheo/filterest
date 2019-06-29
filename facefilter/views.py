@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import facefilter.facefilter.imgmain as filterimg
+from facefilter.facefilter import imgmain as filterimg
 
 # Create your views here.
 
@@ -18,7 +18,6 @@ def processImage(request):
     response = HttpResponse(downloadImg, content_type=content_type)
     response['Content-Disposition'] = "attachment;"
     return response
-    # return render(request, 'facefilter/home.html')
   else:
     response = JsonResponse({"error": "there was an error"})
     response.status_code = 403
