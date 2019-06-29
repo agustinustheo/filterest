@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from facefilter.facefilter import imgmain as filterimg
+from . import imgmain as filterimg
 
 # Create your views here.
 
