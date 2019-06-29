@@ -15,58 +15,59 @@ function getCookie(name) {
 }
 const csrfToken = getCookie('csrftoken')
 
-let getYoutubeUrl = document.getElementById('getYoutubeUrl');
+let uploadImageForm = document.getElementById('uploadImageForm');
 
-getYoutubeUrl.onsubmit = function(e){
+
+function validateFileUpload(uploadImageElement) {
+    var fileUploadPath = uploadImageElement.value;
+
+    if (fileUploadPath == '') {
+        alert("Please upload an image");
+        return false;
+    } 
+    else {
+        var extension = fileUploadPath.substring(fileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+        if (extension == "png" || extension == "jpeg" || extension == "jpg") {
+            return true;
+        }
+        else {
+            alert("Image filter only allows file types of PNG, JPG, and JPEG. ");
+            return false;
+        }
+    }
+}
+
+uploadImageForm.onsubmit = function(e){
     e.preventDefault();
     let formData = new FormData();
-
-    let url = getYoutubeUrl.getElementsByTagName("input")[0].value;
-
-
-    let id = ""
-    if(url.indexOf("&") != -1){
-        id = url.substring(
-            parseInt(url.indexOf("v=") + 2), 
-            url.indexOf("&")
-        );
-        url = url.substring(
-            0, 
-            url.indexOf("&")
-        );
+    let uploadImage = document.getElementById('uploadImage');
+    
+    if(validateFileUpload(uploadImage)){
+        formData.append("image", uploadImage.files[0]);
+    
+        axios({
+            method: 'post',
+            url: 'processImage/',
+            data: formData,
+            responseType: 'blob',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                "X-CSRFToken": csrfToken
+            }
+        })
+        .then(response => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.jpg');
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode.removeChild(link);
+        })
+        .catch(ex => {
+            alert('Error: check console for details');
+            console.log(ex);
+        })
     }
-    else{
-        id = url.substring(
-            parseInt(url.indexOf("v=") + 2), 
-            url.length
-        );
-    }
-
-    formData.append("id", id);
-
-    axios({
-        method: 'post',
-        url: '/pending',
-        data: formData,
-        headers: {"X-CSRFToken": csrfToken}
-    })
-    .then(response => {
-        if(response.data === "Success"){
-            formData.append("url", url);
-            axios({
-                method: 'post',
-                url: '/review',
-                data: formData,
-                headers: {"X-CSRFToken": csrfToken}
-            });
-            window.location.href = "/commentary";
-        }
-        else{
-            alert(response.data);
-        }
-    })
-    .catch(ex => {
-        alert('Error: check console for details');
-        console.log(ex);
-    })
 }
