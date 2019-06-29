@@ -1,4 +1,4 @@
-# Face Filter
+# Face Filter Web App
 Add filters on face such as doggy faces or any other face filters (trying to go for Facebook or Instagram like features). This uses code and haar cascade classifiers supplied by opencv. 
 
 
