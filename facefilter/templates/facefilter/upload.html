@@ -6,6 +6,7 @@
       Go To Commentary
     </a>
     <div class="filterest-title">
+        {% csrf_token %}
         <img src="{% static 'facefilter/img/filterest.png' %}">
         <img src="{% static 'facefilter/img/filterest mascot.png' %}">
         <form id="uploadImageForm">
