@@ -1,13 +1,42 @@
+/*--------------------------- MAIN CSS ---------------------------*/
+@font-face{
+    font-family: Rubik;
+    src: url(fonts/Rubik-Light.ttf);
+    font-weight: 300;
+}  
+@font-face{
+    font-family: Rubik;
+    src: url(fonts/Rubik-Regular.ttf);
+    font-weight: 400;
+}
+@font-face{
+    font-family: Rubik;
+    src: url(fonts/Rubik-Bold.ttf);
+    font-weight: 500;
+}  
+@font-face{
+    font-family: Rubik;
+    src: url(fonts/Rubik-Black.ttf);
+    font-weight: 600;
+}  
 *{
     margin: 0;
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: Rubik;
     overflow-x: hidden;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    transition: all .1s cubic-bezier(.15,.87,.92,.37);
+}
+i.fas{
+    display: block;
+    overflow: hidden;
 }
 .filterest-main{
     width: 100vw;
     height: 100vh;
     position: relative;
-    background: #e0ecec;
+    background: #FFDE03;
 }
 .filterest-name{
     position: absolute;
@@ -26,6 +55,11 @@
     flex-direction: column;
     justify-content: center;
 }
+
+/*--------------------------- HOME CSS ---------------------------*/
+.filterest-title > h1{
+    font-size: 56pt;
+}
 .filterest-title > a#goToUpload{
     width: 60px;
     height: 60px;
@@ -36,103 +70,114 @@
 
     margin: 10px;
 
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 20pt;
+
     border-radius: 10px;
-    background:#ff9100;
+    background:#FF0266;
 }
-.filterest-title > a#goToUpload > img{
-    width: 60%;
-    height: 60%;
-}
-.filterest-title > img, .filterest-title > form#getYoutubeUrl{
+
+/*--------------------------- UPLOAD CSS ---------------------------*/
+.filterest-title > img{
     margin: 10px;
 }
-form#getYoutubeUrl > input{
-    width: 425px;
-    height: 38px;
+.filterest-image-preview{
+    border-radius: 5px;
 
-    font-size: 16pt;
-    padding-left: 8px;
-    padding-right: 8px;
-
-    border-radius: 10px;
-    border: 1px solid grey;
-    outline: none;
-}
-#ytplayer{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-#ytplayer > *{
-    display: block;
-    margin-top: 15px;
-}
 
-.filterest-reviews{
-    width: 80%;
-    margin: auto;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    display: block;
+    position: relative;
+}
+.filterest-image-preview-view{
+    max-width: 500px;
     background: white;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-    color: black;
-    text-decoration: none;
 }
-
-.filterest-reviews > b{
-    font-size: 20pt;
-    display: block;
-    margin:10px;
-}
-
-.filterest-reviews > span{
-    font-size: 14pt;
-}
-
-.filterest-reviews > span > span.finished{
-    color: green;
-}
-
-.filterest-reviews > span > span.processing{
-    color: orangered;
-}
-
-.filterest-reviews > span > span.error{
-    color: red;
-}
-.filterest-comment-box{
-    background: white;
-    margin: 10px;
-    margin-top: 40px;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-    font-size: 16pt;
-}
-.filterest-play-button{
-    background: orangered;
+.filterest-before-input{
+    background: #0336FF;
     color: white;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16pt;
-    outline: none;
-    border: 0;
+    padding: 15px;
+    border-radius: 25px 0 0 0;
     cursor: pointer;
 }
-#ytplayer > div.filterest-container{
-    display: grid;
-    grid-template-columns: 85px calc(100% - 85px);
-    align-items: center;
-    width: 80%;
+.filterest-image-preview > *{
+    display: block;
+    text-align: center;
+}
+.filterest-image-preview > div:nth-child(1){
+    width: 100%;
+    background: black;
+}
+.filterest-image-preview > div > img{
+    max-width: 100%;
+    max-height: 500px;
     margin: auto;
-    margin-bottom: 100px;
 }
-.filterest-play-button:hover{
-    background: rgb(204, 64, 13);
+#uploadImageView{
+    display: block;
 }
-.filterest-result-container{
-    margin-top: 120px;
+#uploadImageForm{
+    display: none;
+    position: absolute;
+}
+.filterest-upload-preview-title{
+    font-weight: 500;
+    font-size: 18pt;
+    margin: 10px;
+}
+.filterest-file-input{
+    display: block;
+    font-size: 16pt;
+    margin: 10px
+}
+.filterest-button-submit{
+    display: block;
+    background: #0336FF;
+    color: white;
+
+    font-size: 16pt;
+
+    padding: 10px;
+    margin: 10px;
+
+    cursor: pointer;
+}
+.filterest-download-button{
+    display: block;
+    background: #0336FF;
+    color: white;
+
+    text-decoration: none;
+    text-align: center;
+    font-size: 14pt;
+
+    padding: 8px;
+    
+    border: 2px solid white;
+    border-radius: 100%;
+    overflow: hidden;
+
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+.filterest-back-button{
+    display: block;
+    background: #FF0266;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    color :black;
+    text-decoration: none;
+    font-size: 20pt;
+
+    padding: 20px;
+
+    border-radius: 0 0 40% 0;
+    cursor: pointer;
 }

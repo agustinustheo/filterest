@@ -2,19 +2,30 @@
 {% load staticfiles %}
 
 {% block content %}
-    <a href="/commentary" class="filterest-name">
-      Go To Commentary
+    <form id="uploadImageForm">
+      {% csrf_token %}
+      <input id="uploadImage" type="file" name="uploadImage">
+      <input id="uploadImageButton" type="submit" name="uploadImageButton">
+    </form>
+    <a href="" class="filterest-name">
+      
     </a>
+
+    <a class="filterest-back-button" href="/">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+
     <div class="filterest-title">
-        {% csrf_token %}
-        <img src="{% static 'facefilter/img/filterest.png' %}">
-        <img src="{% static 'facefilter/img/filterest mascot.png' %}">
-        <form id="uploadImageForm">
-          <input id="uploadImage" type="file" name="param_1">
-          <input type="submit">
-        </form>
+        <div class="filterest-image-preview">
+          <div>
+              <img id="uploadImageView" src="">
+          </div>
+          <h5 id="uploadImagePreviewTitle"></h5>
+          <label class="filterest-file-input filterest-before-input" for="uploadImage" id="labelUploadImage">Click Me</label>
+          <!-- <label class="filterest-button-submit" for="uploadImageButton">Submit</label> -->
+        </div>
     </div>
 
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{% static 'facefilter/js/upload.js' %}"></script>
 {% endblock %}

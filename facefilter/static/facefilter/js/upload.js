@@ -13,10 +13,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-const csrfToken = getCookie('csrftoken')
-
-let uploadImageForm = document.getElementById('uploadImageForm');
-
 
 function validateFileUpload(uploadImageElement) {
     var fileUploadPath = uploadImageElement.value;
@@ -36,6 +32,49 @@ function validateFileUpload(uploadImageElement) {
             return false;
         }
     }
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        let reader = new FileReader();
+        let uploadImageView = document.getElementById('uploadImageView');
+        
+        reader.onload = function(e) {
+            uploadImageView.setAttribute('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+document.oncontextmenu = new Function("return false;")
+const csrfToken = getCookie('csrftoken');
+let uploadImageForm = document.getElementById('uploadImageForm');
+let uploadImage = document.getElementById('uploadImage');
+let uploadImagePreviewTitle = document.getElementById('uploadImagePreviewTitle');
+
+uploadImage.onchange = function() {
+    if(document.getElementsByClassName('filterest-download-button').length > 0){
+        let prevDownloadButton = document.getElementsByClassName('filterest-download-button')[0];
+        prevDownloadButton.parentNode.removeChild(prevDownloadButton);
+    }
+    let filterestImagePreview = document.getElementsByClassName('filterest-image-preview')[0];
+    let labelUploadImage = document.getElementById('labelUploadImage');
+    let tempPath = "fakepath\\";
+
+    uploadImagePreviewTitle.innerText = "Uploaded Image";
+    uploadImagePreviewTitle.setAttribute('class', 'filterest-upload-preview-title');
+    filterestImagePreview.setAttribute('class', 'filterest-image-preview filterest-image-preview-view');
+    labelUploadImage.setAttribute('class', 'filterest-file-input');
+    labelUploadImage.innerText = this.value.substring(this.value.indexOf(tempPath) + tempPath.length, this.value.length);
+
+    let labelSubmitUploadImage = document.createElement('label');
+    labelSubmitUploadImage.innerText = "Submit";
+    labelSubmitUploadImage.setAttribute('for', 'uploadImageButton');
+    labelSubmitUploadImage.setAttribute('class', 'filterest-button-submit');
+    filterestImagePreview.appendChild(labelSubmitUploadImage);
+
+    readURL(this);
 }
 
 uploadImageForm.onsubmit = function(e){
@@ -58,12 +97,23 @@ uploadImageForm.onsubmit = function(e){
         })
         .then(response => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'file.jpg');
-            document.body.appendChild(link);
-            link.click();
-            link.parentNode.removeChild(link);
+            let uploadImageView = document.getElementById('uploadImageView');
+            let filterestPreviewContainer = document.getElementsByClassName('filterest-image-preview')[0];
+            const newDownloadButton = document.createElement('a');
+            newDownloadButton.innerHTML = "<i class='fas fa-arrow-circle-down'></i>"
+            newDownloadButton.setAttribute('class', 'filterest-download-button');
+            newDownloadButton.href = url;
+            newDownloadButton.setAttribute('download', 'filteredimage.jpg');
+
+            if(filterestPreviewContainer.getElementsByClassName('filterest-download-button').length > 0){
+                let prevDownloadButton = filterestPreviewContainer.getElementsByClassName('filterest-download-button')[0];
+                prevDownloadButton.parentNode.removeChild(prevDownloadButton);
+            }
+            
+            uploadImagePreviewTitle.innerText = "Filtered Image"
+            uploadImagePreviewTitle.setAttribute('class', 'filterest-upload-preview-title');
+            uploadImageView.setAttribute('src', url);
+            filterestPreviewContainer.appendChild(newDownloadButton);
         })
         .catch(ex => {
             alert('Error: check console for details');

@@ -5,7 +5,7 @@ from . import imgmain as filterimg
 # Create your views here.
 
 def home(request):
-  return render(request, 'facefilter/home.html')
+  return render(request, 'facefilter/index.html')
   
 def upload(request):
   return render(request, 'facefilter/upload.html')
