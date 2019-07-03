@@ -1,0 +1,30 @@
+{% extends "facefilter/layout.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <form id="uploadVideoForm">
+      {% csrf_token %}
+      <input id="uploadVideo" type="file" name="uploadVideo">
+      <input id="uploadVideoButton" type="submit" name="uploadVideoButton">
+    </form>
+    <a href="" class="filterest-name">
+      
+    </a>
+
+    <a class="filterest-back-button" href="/">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <div class="filterest-title">
+        <div class="filterest-video-preview">
+          <div>
+              <video id="uploadVideoView" src="" style="display: none;"autoplay="true" muted="" loop>
+          </div>
+          <h5 id="uploadVideoPreviewTitle"></h5>
+          <label class="filterest-file-input filterest-before-input" for="uploadVideo" id="labeluploadVideo">Upload Video</label>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{% static 'facefilter/js/video.js' %}"></script>
+{% endblock %}

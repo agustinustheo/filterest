@@ -35,15 +35,16 @@ function validateFileUpload(uploadImageElement) {
 }
 
 function readURL(input) {
+    let reader = new FileReader();
+    let uploadImageView = document.getElementById('uploadImageView');
     if (input.files && input.files[0]) {
-        let reader = new FileReader();
-        let uploadImageView = document.getElementById('uploadImageView');
-        
         reader.onload = function(e) {
             uploadImageView.setAttribute('src', e.target.result);
         }
-        
         reader.readAsDataURL(input.files[0]);
+    }
+    else{
+        uploadImageView.setAttribute('src', '');
     }
 }
 
@@ -62,17 +63,38 @@ uploadImage.onchange = function() {
     let labelUploadImage = document.getElementById('labelUploadImage');
     let tempPath = "fakepath\\";
 
-    uploadImagePreviewTitle.innerText = "Uploaded Image";
-    uploadImagePreviewTitle.setAttribute('class', 'filterest-upload-preview-title');
-    filterestImagePreview.setAttribute('class', 'filterest-image-preview filterest-image-preview-view');
-    labelUploadImage.setAttribute('class', 'filterest-file-input');
-    labelUploadImage.innerText = this.value.substring(this.value.indexOf(tempPath) + tempPath.length, this.value.length);
+    if(this.value != ""){
+        uploadImagePreviewTitle.innerText = "Uploaded Image";
+        uploadImagePreviewTitle.setAttribute('class', 'filterest-upload-preview-title');
+        filterestImagePreview.setAttribute('class', 'filterest-image-preview filterest-image-preview-view');
+        labelUploadImage.setAttribute('class', 'filterest-file-input');
+        let labelText = this.value.substring(this.value.indexOf(tempPath) + tempPath.length, this.value.length);
+        if(labelText.length > 25){
+            labelUploadImage.innerText = labelText.substring(0, 21) + "...";
+        }
+        else{
+            labelUploadImage.innerText = labelText;
+        }
 
-    let labelSubmitUploadImage = document.createElement('label');
-    labelSubmitUploadImage.innerText = "Submit";
-    labelSubmitUploadImage.setAttribute('for', 'uploadImageButton');
-    labelSubmitUploadImage.setAttribute('class', 'filterest-button-submit');
-    filterestImagePreview.appendChild(labelSubmitUploadImage);
+        if(document.getElementsByClassName('filterest-button-submit')[0] == undefined){
+            let labelSubmitUploadImage = document.createElement('label');
+            labelSubmitUploadImage.innerText = "Submit";
+            labelSubmitUploadImage.setAttribute('for', 'uploadImageButton');
+            labelSubmitUploadImage.setAttribute('class', 'filterest-button-submit');
+            filterestImagePreview.appendChild(labelSubmitUploadImage);
+        }
+    }
+    else{
+        uploadImagePreviewTitle.innerText = "";
+        uploadImagePreviewTitle.setAttribute('class', '');
+        filterestImagePreview.setAttribute('class', 'filterest-image-preview');
+        labelUploadImage.setAttribute('class', 'filterest-file-input filterest-before-input');
+        labelUploadImage.innerText = "Upload Photo";
+
+        if(document.getElementsByClassName('filterest-button-submit')){
+            document.getElementsByClassName('filterest-button-submit')[0].parentNode.removeChild(document.getElementsByClassName('filterest-button-submit')[0]);
+        }
+    }
 
     readURL(this);
 }
@@ -116,8 +138,7 @@ uploadImageForm.onsubmit = function(e){
             filterestPreviewContainer.appendChild(newDownloadButton);
         })
         .catch(ex => {
-            alert('Error: check console for details');
-            console.log(ex);
+            alert('Failed to process image, please upload another one');
         })
     }
 }

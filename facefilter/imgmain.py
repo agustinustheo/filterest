@@ -20,11 +20,11 @@ def process(img):
     nparr = np.fromstring(img, np.uint8)
     frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR) # decode blob to cv2 img
 
-    img = cv2.imread(os.path.join(base_dir + '/filter/dog_ears.png'), cv2.IMREAD_UNCHANGED)
+    img = cv2.imread(os.path.join(base_dir + '/static/facefilter/filter/dog_ears.png'), cv2.IMREAD_UNCHANGED)
     img_height, img_width, _ = img.shape
-    nose_filter = cv2.imread(os.path.join(base_dir + '/filter/dog_nose.png'), cv2.IMREAD_UNCHANGED)
+    nose_filter = cv2.imread(os.path.join(base_dir + '/static/facefilter/filter/dog_nose.png'), cv2.IMREAD_UNCHANGED)
     nose_filter_height, nose_filter_width, _ = nose_filter.shape
-    mouth_filter = cv2.imread(os.path.join(base_dir + '/filter/tongue.png'), cv2.IMREAD_UNCHANGED)
+    mouth_filter = cv2.imread(os.path.join(base_dir + '/static/facefilter/filter/tongue.png'), cv2.IMREAD_UNCHANGED)
     mouth_filter_height, mouth_filter_width, _ = mouth_filter.shape
 
     filter_layer = np.zeros((frame.shape[0], frame.shape[1], 4))

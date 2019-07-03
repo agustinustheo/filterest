@@ -25,8 +25,6 @@
     overflow-x: hidden;
     user-select: none;
     -webkit-user-drag: none;
-
-    transition: all .1s cubic-bezier(.15,.87,.92,.37);
 }
 i.fas{
     display: block;
@@ -56,11 +54,23 @@ i.fas{
     justify-content: center;
 }
 
-/*--------------------------- HOME CSS ---------------------------*/
-.filterest-title > h1{
-    font-size: 56pt;
+/*--------------------------- INDEX CSS ---------------------------*/
+.filterest-title > div#indexTitle{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
-.filterest-title > a#goToUpload{
+.filterest-title > div#indexTitle > h1{
+    font-size: 56pt;
+    transform: translateY(40px);
+    z-index: 10;
+
+    transition: all .3s cubic-bezier(.08,.02,.91,.19);
+
+    cursor: pointer;
+}
+.filterest-title > div#indexTitle > a#goToUpload{
     width: 60px;
     height: 60px;
 
@@ -77,6 +87,20 @@ i.fas{
 
     border-radius: 10px;
     background:#FF0266;
+    
+    transform: translateY(-40px);
+    opacity: 0;
+
+    transition: all .3s cubic-bezier(.08,.02,.91,.19);
+
+    cursor: pointer;
+}
+div#indexTitle:hover > h1{
+    transform: translateY(10px);
+}
+div#indexTitle:hover > a#goToUpload{
+    transform: translateY(-10px);
+    opacity: 1;
 }
 
 /*--------------------------- UPLOAD CSS ---------------------------*/
@@ -100,7 +124,7 @@ i.fas{
     background: #0336FF;
     color: white;
     padding: 15px;
-    border-radius: 25px 0 0 0;
+    border-radius: 25px 3px 3px 3px;
     cursor: pointer;
 }
 .filterest-image-preview > *{
@@ -140,8 +164,10 @@ i.fas{
 
     font-size: 16pt;
 
-    padding: 10px;
+    padding: 15px;
     margin: 10px;
+    
+    border-radius: 25px 3px 3px 3px;
 
     cursor: pointer;
 }
@@ -180,4 +206,42 @@ i.fas{
 
     border-radius: 0 0 40% 0;
     cursor: pointer;
+}
+
+/*--------------------------- VIDEO CSS ---------------------------*/
+.filterest-video-preview > div > video{
+    max-width: 500px;
+}
+.filterest-video-preview{
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+}
+.filterest-video-preview-view{
+    max-width: 500px;
+    background: white;
+}
+.filterest-video-preview > *{
+    display: block;
+    text-align: center;
+}
+.filterest-video-preview > div:nth-child(1){
+    width: 100%;
+    background: black;
+}
+.filterest-video-preview > div > img{
+    max-width: 100%;
+    max-height: 500px;
+    margin: auto;
+}
+#uploadVideoView{
+    display: block;
+}
+#uploadVideoForm{
+    display: none;
+    position: absolute;
 }
