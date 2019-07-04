@@ -127,7 +127,7 @@ uploadVideoForm.onsubmit = function(e){
             newDownloadButton.innerHTML = "<i class='fas fa-arrow-circle-down'></i>"
             newDownloadButton.setAttribute('class', 'filterest-download-button');
             newDownloadButton.href = url;
-            newDownloadButton.setAttribute('download', 'filteredvideo.avi');
+            newDownloadButton.setAttribute('download', 'filteredvideo.mp4');
 
             if(filterestPreviewContainer.getElementsByClassName('filterest-download-button').length > 0){
                 let prevDownloadButton = filterestPreviewContainer.getElementsByClassName('filterest-download-button')[0];

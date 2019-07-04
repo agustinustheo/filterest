@@ -31,9 +31,11 @@ def processVideo(request):
   if request.method == "POST":
     uploadedVideo = request.FILES['video'].read()
     downloadVideo = filtervideo.process(uploadedVideo)
+    print("BB")
     content_type = request.FILES['video'].content_type
     response = HttpResponse(downloadVideo, content_type=content_type)
     response['Content-Disposition'] = "attachment;"
+    print("CC")
     return response
   else:
     response = JsonResponse({"error": "there was an error"})

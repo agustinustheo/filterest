@@ -42,11 +42,13 @@ def process(video):
 
     frame_width = int(cap.get(3))
     frame_height = int(cap.get(4))
-    out = cv2.VideoWriter(os.path.join(base_dir + '/inprocess/' + video_id + '_filtered.avi'),cv2.VideoWriter_fourcc('M','J','P','G'), 25, (frame_width, frame_height))
+    fourcc = cv2.VideoWriter_fourcc(*'H264')  # 'x264' doesn't work
+    out = cv2.VideoWriter(os.path.join(base_dir + '/inprocess/' + video_id + '_filtered.mp4'), fourcc, 20.0, (640, 360), False)
 
     while True:
         # read frame
         ret, frame = cap.read()
+        print_frame = frame
 
         # check if frame is empty
         if not ret:
@@ -210,12 +212,14 @@ def process(video):
                 except Exception as e:
                     print(e)
 
-            # write videos to file
-            out.write(res)
+            print_frame = cv2.resize(res, (640, 360))
+
+        # write videos to file
+        out.write(print_frame)
 
     # release captured video
     cap.release()
     out.release()
 
-    filtered_video = open(os.path.join(base_dir + '/inprocess/' + video_id + '_filtered.avi'), 'r')
+    filtered_video = open(os.path.join(base_dir + '/inprocess/' + video_id + '_filtered.mp4'), 'rb')
     return filtered_video
