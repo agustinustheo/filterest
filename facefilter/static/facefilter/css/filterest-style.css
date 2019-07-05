@@ -36,13 +36,26 @@ i.fas{
     position: relative;
     background: #FFDE03;
 }
-.filterest-name{
+.filterest-navbar{
     position: absolute;
     top: 15px;
     right: 25px;
-    font-size: 24pt;
+
+    display: flex;
+}
+.filterest-navbar > a{
+    display: block;
+    margin: 10px;
+    margin-right: 30px;
+
+    font-size: 12pt;
+    font-weight: 600;
     color: black;
     text-decoration: none;
+}
+.filterest-navbar > a:hover{
+    color: #424242;
+    text-decoration: underline;
 }
 .filterest-title{
     width: 100vw;
@@ -70,7 +83,19 @@ i.fas{
 
     cursor: pointer;
 }
-.filterest-title > div#indexTitle > a#goToUpload{
+.filterest-title > div#indexTitle > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    transform: translateY(-40px);
+    opacity: 0;
+
+    transition: all .3s cubic-bezier(.08,.02,.91,.19);
+
+    cursor: pointer;
+}
+.filterest-title > div#indexTitle > div > a#goToUpload{
     width: 60px;
     height: 60px;
 
@@ -87,19 +112,19 @@ i.fas{
 
     border-radius: 10px;
     background:#FF0266;
-    
-    transform: translateY(-40px);
+
     opacity: 0;
-
+    
     transition: all .3s cubic-bezier(.08,.02,.91,.19);
-
-    cursor: pointer;
 }
 div#indexTitle:hover > h1{
     transform: translateY(10px);
 }
-div#indexTitle:hover > a#goToUpload{
+div#indexTitle:hover > div{
     transform: translateY(-10px);
+    opacity: 1;
+}
+div#indexTitle:hover > div > a#goToUpload{
     opacity: 1;
 }
 
